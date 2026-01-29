@@ -7,7 +7,7 @@ import streamlit as st
 import cv2
 import numpy as np
 from PIL import Image
-from mediapipe.python import solutions as mp_solutions
+from mediapipe as mp
 
 # -------------------------------
 # Page Configuration
@@ -85,4 +85,5 @@ if person_file and garment_file:
 
     # Display final image
     st.image(person_img, channels="RGB", caption="Virtual Try-On Result")
+
 
