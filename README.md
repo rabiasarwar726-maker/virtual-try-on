@@ -20,7 +20,7 @@ The Virtual Try-On System allows users to upload a person image and a transparen
 - NumPy  
 
 ## **How to Run **
-```bash
+
 git clone https://github.com/rabiasarwar726-maker/virtual-try-on.git
 cd virtual-try-on
 pip install -r requirements.txt
@@ -34,9 +34,15 @@ Notes :
 - This is a 2D virtual try-on system (no cloth physics)
 
 Screenshot
- 
-<img width="1024" height="1536" alt="virtual_tryon_result (1)" src="https://github.com/user-attachments/assets/f53c2541-e4c6-4b96-b0f2-c86a4e36d90f" />
-<img width="1024" height="1536" alt="virtual_tryon_result (2)" src="https://github.com/user-attachments/assets/8cfa988a-42ec-486e-b175-ac3b30384a54" />
+ <img width="1024" height="1536" alt="resul1" src="https://github.com/user-attachments/assets/880d5e4e-44ab-4b9d-8f84-6b6a9fe85f6f" />
+ <img width="1024" height="1536" alt="result 2" src="https://github.com/user-attachments/assets/fb02a95b-1439-4c51-8600-a3b3d129c955" />
+ <img width="1024" height="1536" alt="result3" src="https://github.com/user-attachments/assets/beb1cc7b-e5b0-464f-b6a1-532743768123" />
+ <img width="1024" height="1536" alt="result4" src="https://github.com/user-attachments/assets/2bf58c66-44ca-4c69-a596-6ef131712601" />
+
+
+
+
+
 
 
 ## **Purpose** :
