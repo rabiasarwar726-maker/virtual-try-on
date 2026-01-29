@@ -1,6 +1,6 @@
 # =========================================
 # Virtual Try-On System - Streamlit App
-# Compatible with Mediapipe 0.10.30 and Python 3.13
+# Fully compatible with Streamlit Cloud
 # =========================================
 
 import streamlit as st
@@ -66,24 +66,25 @@ if person_file and garment_file:
     rgb_image = cv2.cvtColor(person_img, cv2.COLOR_RGB2BGR)
 
     # Initialize Mediapipe Pose Detector
-    with mp.solutions.pose.Pose(static_image_mode=True) as pose_detector:
-        results = pose_detector.process(rgb_image)
+    pose_detector = mp.solutions.pose.Pose(static_image_mode=True)
 
-        if results.pose_landmarks:
-            # Example: Get shoulders coordinates to position garment
-            h, w, _ = person_img.shape
-            left_shoulder = results.pose_landmarks.landmark[mp.solutions.pose.PoseLandmark.LEFT_SHOULDER]
-            right_shoulder = results.pose_landmarks.landmark[mp.solutions.pose.PoseLandmark.RIGHT_SHOULDER]
+    # Process image
+    results = pose_detector.process(rgb_image)
 
-            x1 = int(left_shoulder.x * w)
-            y1 = int(left_shoulder.y * h)
-            x2 = int(right_shoulder.x * w)
-            y2 = int(right_shoulder.y * h)
+    if results.pose_landmarks:
+        h, w, _ = person_img.shape
+        pose_landmarks = results.pose_landmarks.landmark
 
-            # Simple positioning: top-left of garment at left shoulder
-            x = x1
-            y = y1
-            person_img = overlay_transparent(person_img, garment_img, x, y)
+        # Get shoulder coordinates
+        left_shoulder = pose_landmarks[mp.solutions.pose.PoseLandmark.LEFT_SHOULDER.value]
+        right_shoulder = pose_landmarks[mp.solutions.pose.PoseLandmark.RIGHT_SHOULDER.value]
+
+        # Convert to pixel coordinates
+        x1 = int(left_shoulder.x * w)
+        y1 = int(left_shoulder.y * h)
+
+        # Overlay garment at left shoulder (simple positioning)
+        person_img = overlay_transparent(person_img, garment_img, x1, y1)
 
     # Display final image
     st.image(person_img, channels="RGB", caption="Virtual Try-On Result")
